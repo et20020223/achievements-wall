@@ -1,0 +1,43 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# 忽略所有 node_modules
+**/node_modules/
+
+# 忽略所有子專案的輸出
+**/dist/
+**/build/
+
+# 系統檔
+.DS_Store
+.thumbs.db
+
+# 環境變數
+.env
+.env.*
+
+# TypeScript 建構資訊
+*.tsbuildinfo
+**/*.tsbuildinfo
