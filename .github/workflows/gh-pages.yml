@@ -5,6 +5,14 @@ on:
         branches:
             - main
 
+# Grant explicit permissions so the workflow can create/update the `gh-pages`
+# branch using the built-in GITHUB_TOKEN. If your repository or org restricts
+# Actions permissions, you may still need to use a personal access token.
+permissions:
+    contents: write
+    pages: write
+    id-token: write
+
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
@@ -12,6 +20,9 @@ jobs:
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
+              with:
+                  # keep the GITHUB_TOKEN available for subsequent steps
+                  persist-credentials: true
 
             - name: Setup Node.js
               uses: actions/setup-node@v4
