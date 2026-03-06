@@ -1,4 +1,4 @@
-import {createRouter, createWebHashHistory} from 'vue-router';
+import {createRouter, createWebHistory} from 'vue-router';
 import Campaign from '../pages/Campaign.vue';
 
 const routes = [
@@ -55,7 +55,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 });
 
