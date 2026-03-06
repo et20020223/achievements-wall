@@ -1,6 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router';
-import MainLayout from '../layouts/main-layout.vue';
-import Home from '../pages/Home.vue';
+import Campaign from '../pages/Campaign.vue';
 
 const routes = [
 
@@ -39,12 +38,11 @@ const routes = [
 
   {
     path: '/',
-    component: MainLayout,
     children: [
       {
         path: '',
         name: 'Home',
-        component: Home,
+        component: Campaign,
         meta: {
           breadCrumb: [
             {text: '首頁', to: '/'},

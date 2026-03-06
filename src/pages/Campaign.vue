@@ -21,9 +21,47 @@
           <a class="nav-link text-grey-8 cursor-pointer" @click.prevent="scrollToSection('section-highlights')">最新花絮</a>
         </div>
 
-        <q-btn flat round dense icon="menu" class="lt-md" color="grey-8" />
+        <q-btn flat round dense icon="menu" class="lt-md" color="grey-8" @click="toggleLeftDrawer" />
       </div>
     </q-header>
+
+    <q-drawer
+      v-model="leftDrawerOpen"
+      side="right"
+      overlay
+      behavior="mobile"
+      bordered
+    >
+      <q-list class="q-pt-md">
+        <q-item clickable v-ripple @click="drawerScrollTo('section-about')">
+          <q-item-section avatar>
+            <q-icon name="person" />
+          </q-item-section>
+          <q-item-section>經歷</q-item-section>
+        </q-item>
+
+        <q-item clickable v-ripple @click="drawerScrollTo('section-stats')">
+          <q-item-section avatar>
+            <q-icon name="assessment" />
+          </q-item-section>
+          <q-item-section>政績一覽</q-item-section>
+        </q-item>
+
+        <q-item clickable v-ripple @click="drawerScrollTo('section-policies')">
+          <q-item-section avatar>
+            <q-icon name="article" />
+          </q-item-section>
+          <q-item-section>政策專區</q-item-section>
+        </q-item>
+
+        <q-item clickable v-ripple @click="drawerScrollTo('section-highlights')">
+          <q-item-section avatar>
+            <q-icon name="campaign" />
+          </q-item-section>
+          <q-item-section>最新花絮</q-item-section>
+        </q-item>
+      </q-list>
+    </q-drawer>
 
     <q-page-container>
       <q-page>
@@ -171,17 +209,17 @@
               <q-tab-panels v-model="tab" animated class="bg-white">
                 <q-tab-panel name="economy" class="q-pa-lg">
                   <ul class="policy-list list-none no-margin q-pl-none q-gutter-y-lg">
-                    <li class="row items-center">
+                    <li class="row items-center no-wrap">
                       <q-icon name="check" color="blue-8" size="sm" class="q-mr-md" />
                       <span class="text-subtitle1 text-grey-9 text-weight-medium">推動內湖科技園區綠能化，創造更多就業機會</span>
                     </li>
                     <q-separator inset />
-                    <li class="row items-center">
+                    <li class="row items-center no-wrap">
                       <q-icon name="check" color="blue-8" size="sm" class="q-mr-md" />
                       <span class="text-subtitle1 text-grey-9 text-weight-medium">活化在地老商圈，設立發展中心輔導轉型</span>
                     </li>
                     <q-separator inset />
-                    <li class="row items-center">
+                    <li class="row items-center no-wrap">
                       <q-icon name="check" color="blue-8" size="sm" class="q-mr-md" />
                       <span class="text-subtitle1 text-grey-9 text-weight-medium">青年創業獎勵金，提供辦公空間補貼</span>
                     </li>
@@ -382,6 +420,10 @@ import {scroll} from 'quasar';
 
 const $q = useQuasar();
 const tab = ref('economy');
+const leftDrawerOpen = ref(false);
+const toggleLeftDrawer = () => {
+  leftDrawerOpen.value = !leftDrawerOpen.value;
+};
 
 const campaignData = reactive({
   highlights: {
@@ -423,6 +465,11 @@ const scrollToSection = (id) => {
     const duration = 500;
     scroll.setVerticalScrollPosition(target, offset, duration);
   }
+};
+
+const drawerScrollTo = (id) => {
+  scrollToSection(id);
+  leftDrawerOpen.value = false;
 };
 </script>
 <style scoped>
